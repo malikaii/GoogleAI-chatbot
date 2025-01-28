@@ -1,5 +1,6 @@
 import React from "react";
 import "./Chat.css";
+import Markdown from "react-markdown";
 
 const WELCOME_MESSAGE = {
     role: "assistant",
@@ -14,7 +15,7 @@ function Chat({ messages }) {
     <div className="Chat">
       {[WELCOME_MESSAGE, ...messages].map(({ role, content }, index) => (
         <div className="Message" key={index} data-role={role}>
-          {content}
+         <Markdown>{content}</Markdown> 
         </div>
       ))}
     </div>

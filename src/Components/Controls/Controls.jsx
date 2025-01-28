@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import "./Controls.css";
 function SendIcon() {
@@ -14,33 +14,39 @@ function SendIcon() {
     </svg>
   );
 }
-function Controls({onSend}) {
+function Controls({ isDisabled = false, onSend }) {
   const [content, setContent] = useState("");
+  const textareaRef = useRef(null);
+
+  useEffect(() => {
+    if (!isDisabled) {
+      textareaRef.current.focus();
+    }
+  }, [isDisabled]);
 
   function handleContentChange(event) {
     setContent(event.target.value);
   }
 
   function handleContentSend() {
-    if(content.length > 0) {
-        onSend(content)
-        setContent("")
+    if (content.length > 0) {
+      onSend(content);
+      setContent("");
     }
   }
 
   function handleEnterPress(event) {
-    if (event.key === 'Enter' && !event.shiftKey) {
-        event.preventDefault();
-        handleContentSend();
-         
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      handleContentSend();
     }
   }
-
 
   return (
     <div className="Controls">
       <div className="TextAreaContainer">
         <textarea
+          ref={textareaRef}
           className="TextArea"
           placeholder="Message Chatbot"
           name=""
@@ -52,7 +58,11 @@ function Controls({onSend}) {
           {" "}
         </textarea>
       </div>
-      <button className="Button" onClick={handleContentSend}>
+      <button
+        className="Button"
+        disabled={isDisabled}
+        onClick={handleContentSend}
+      >
         <SendIcon />
       </button>
     </div>
