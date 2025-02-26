@@ -1,5 +1,5 @@
 import { useState } from "react";
-import chatbotImg from "/assets/chatbot.png";
+import chatbotImg from "../public/assets/chatbot.png";
 import "./App.css";
 import Chat from "./Components/Chat/Chat";
 import Controls from "./Components/Controls/Controls";
