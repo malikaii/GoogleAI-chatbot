@@ -23,9 +23,10 @@
   padding: 0 16px;
   border-radius: 16px;
   font-size: 14px;
+  background-color: #b9b9bc;
 
   &[data-role="user"] {
     align-self: flex-end;
-    background: light-dark(#f3f3f3, #303030);
+    background: #5fc9f8;
   }
 }
